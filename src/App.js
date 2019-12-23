@@ -1,11 +1,22 @@
 import React from 'react';
-import './App.css';
+import Main from './components/Main';
+import {BrowserRouter} from 'react-router-dom';
+import UserState from './context/user/UserState';
+import AlertState from './context/alert/AlertState';
+import DataState from './context/data/dataState';
+import './index.css';
 
-function App() {
+const App = () => {
   return (
-    <div>
-      <h1>F40</h1>
-    </div>
+    <UserState>
+      <AlertState>
+        <DataState>
+          <BrowserRouter>
+            <Main />
+          </BrowserRouter>
+        </DataState>
+      </AlertState>
+    </UserState>
   );
 }
 
