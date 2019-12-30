@@ -85,7 +85,7 @@ const Tasks = () =>{
       const headers={"Content-Type":"application/x-www-form-urlencoded","X-Access-Token":localStorage.getItem('token')}
       event.preventDefault();
       var formData = new FormData(event.target);
-      axios.post(server+'/uploadtask?rollNo='+localStorage.getItem('token')+'&clear=true',formData,{headers}).then(res=>console.log(res));
+      axios.post(server+'/uploadtask?rollNo='+localStorage.getItem('user')+'&clear=true',formData,{headers}).then(res=>console.log(res));
       setTimeout(() => {
         window.location.reload(false);
       }, 3000)

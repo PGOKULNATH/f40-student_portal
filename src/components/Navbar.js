@@ -1,12 +1,27 @@
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
 import UserContext from '../context/user/UserContext';
+import DataContext from '../context/data/dataContext';
 
 const MyNavbar = () => {
 
   const userContext = useContext(UserContext);
   const {user, logout} = userContext;
+
+  const dataContext = useContext(DataContext);
+  const { getEvents, getNotifications, getProfile, getTasks, getAssessments, getAttendance, getCourses } = dataContext;
+
+  useEffect(()=>{
+    getEvents();
+    getNotifications();
+    getProfile();
+    getTasks();
+    getAssessments();
+    getAttendance();
+    getCourses();
+    //eslint-disable-next-line
+  },[])
 
   return (
     <Navbar bg="primary" expand="sm">
