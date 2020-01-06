@@ -10,6 +10,8 @@ import {
   PROFILE_FAIL,
   GET_TASKS,
   TASKS_FAIL,
+  GET_SCORE,
+  SCORE_FAIL,
   GET_ASSESSMENTS,
   ASSESSMENTS_FAIL,
   GET_ATTENDANCE,
@@ -26,6 +28,7 @@ const DataState = props => {
     events : null ,
     profile : null ,
     tasks : null,
+    score : null,
     assessments : null,
     attendance : null,
     courses : null,
@@ -33,6 +36,7 @@ const DataState = props => {
     events_loading : true,
     profile_loading : true,
     tasks_loading : true,
+    score_loading : true,
     assessments_loading : true,
     attendance_loading : true,
     courses_loading : true,
@@ -40,6 +44,7 @@ const DataState = props => {
     events_error : null,
     profile_error : null,
     tasks_error : null,
+    score_error : null,
     assessments_error : null,
     attendance_error : null,
     courses_error : null,
@@ -82,7 +87,7 @@ const DataState = props => {
   const getTasks = async () => {
 
     try {
-      const res =  await axios.get(server + "/alltasks");
+      const res =  await axios.get(server + "/alltasks?rollNo=" + localStorage.getItem('user'));
       dispatch({
         type : GET_TASKS,
         payload : res.data
@@ -91,6 +96,21 @@ const DataState = props => {
 
     catch(err) {
         dispatch({type : TASKS_FAIL, payload : err});
+    }
+  }
+
+  const getScore = async () => {
+
+    try {
+      const res =  await axios.get(server + '/allscores?rollNo=' + localStorage.getItem('user'));
+      dispatch({
+        type : GET_SCORE,
+        payload : res.data
+      });
+    }
+
+    catch(err) {
+        dispatch({type : SCORE_FAIL, payload : err});
     }
   }
 
@@ -160,6 +180,7 @@ const DataState = props => {
         events : state.events,
         profile : state.profile,
         tasks : state.tasks,
+        score : state.score,
         assessments : state.assessments,
         attendance : state.attendance,
         courses : state.courses,
@@ -167,6 +188,7 @@ const DataState = props => {
         events_loading : state.events_loading,
         profile_loading : state.profile_loading,
         tasks_loading : state.tasks_loading,
+        score_loading : state.score_loading,
         assessments_loading : state.assessments_loading,
         attendance_loading : state.attendance_loading,
         courses_loading : state.courses_loading,
@@ -174,6 +196,7 @@ const DataState = props => {
         events_error : state.events_error,
         profile_error : state.profile_error,
         tasks_error : state.tasks_error,
+        score_error : state.score_error,
         assessments_error : state.assessments_error,
         attendance_error : state.attendance_error,
         courses_error : state.courses_error,
@@ -181,6 +204,7 @@ const DataState = props => {
         getEvents,
         getProfile,
         getTasks,
+        getScore,
         getAssessments,
         getAttendance,
         getCourses,

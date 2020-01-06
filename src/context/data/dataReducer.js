@@ -5,6 +5,8 @@ import {
   PROFILE_FAIL,
   GET_TASKS,
   TASKS_FAIL,
+  GET_SCORE,
+  SCORE_FAIL,
   GET_ASSESSMENTS,
   ASSESSMENTS_FAIL,
   GET_ATTENDANCE,
@@ -60,6 +62,21 @@ export default (state, action) => {
         ...state,
         tasks_error : action.payload,
         tasks_loading : false
+      }
+
+    case GET_SCORE :
+      return {
+        ...state,
+        score : action.payload,
+        score_loading : false,
+        score_error : null
+      }
+
+    case SCORE_FAIL :
+      return {
+        ...state,
+        score_error : action.payload,
+        score_loading : false
       }
 
     case GET_ASSESSMENTS :
