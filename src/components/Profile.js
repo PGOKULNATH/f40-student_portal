@@ -6,14 +6,17 @@ import DataContext from '../context/data/dataContext';
 
 const Profile = () => {
 
+  //context data
   const dataContext = useContext(DataContext);
   const { profile, profile_loading, profile_error, getProfile } = dataContext;
 
+  //get profile
   useEffect(() => {
     getProfile();
     //eslint-disable-next-line
   },[]);
 
+  //function for showing achievements
   const Achievements = (achievements) => {
     if (achievements === undefined || achievements.length === 0) {
       return null;
@@ -23,8 +26,8 @@ const Profile = () => {
         <div>
           <b>Achievements</b>
           <ol>
-            {achievements.map(data => {
-              return <li key={profile._id}>{data}</li>;
+            {achievements.map((data,i) => {
+              return <li key={i}>{data}</li>;
             })}
           </ol>
         </div>
@@ -32,15 +35,18 @@ const Profile = () => {
     );
   };
 
+  //this will handle loading
   if(profile_loading){
-      return <Loading/>
-    }
+    return <Loading/>
+  }
 
+  //this will handle errors
   else if(profile_error){
     console.log(profile_error);
     return <h1>Something goes wrong</h1>
   }
 
+  //this will show profile
   return(
     <div className="container">
       <center>

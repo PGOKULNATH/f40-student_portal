@@ -10,13 +10,14 @@ const MyNavbar = () => {
   const {user, logout} = userContext;
 
   const dataContext = useContext(DataContext);
-  const { getEvents, getNotifications, getProfile, getTasks, getAssessments, getAttendance, getCourses } = dataContext;
+  const { getEvents, getNotifications, getProfile, getTasks, getScore, getAssessments, getAttendance, getCourses } = dataContext;
 
   useEffect(()=>{
     getEvents();
     getNotifications();
     getProfile();
     getTasks();
+    getScore();
     getAssessments();
     getAttendance();
     getCourses();

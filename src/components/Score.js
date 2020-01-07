@@ -5,23 +5,28 @@ import DataContext from '../context/data/dataContext';
 
 const Score = () => {
 
+  //context data
   const dataContext = useContext(DataContext);
   const { score, score_loading, score_error, getScore } = dataContext;
 
+  //get scores
   useEffect(() => {
     getScore();
     //eslint-disable-next-line
   },[]);
 
+  //loading score
   if(score_loading){
-      return <Loading/>
-    }
+    return <Loading/>
+  }
 
+  //handling error
   else if(score_error){
     console.log(score_error);
     return <h1>Something goes wrong</h1>
   }
 
+  //this will show scores
   return(
     <div className="container" style={{fontSize: '22px'}}>
       <center className="row">

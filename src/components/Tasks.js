@@ -7,14 +7,55 @@ import DataContext from '../context/data/dataContext';
 
 const Tasks = () =>{
 
+  //context data
   const dataContext = useContext(DataContext);
   const { tasks, tasks_loading, tasks_error, getTasks } = dataContext;
 
+  //get all tasks for this student
   useEffect(() => {
     getTasks();
     //eslint-disable-next-line
   },[]);
 
+  //function for posting attachment
+  const postAttachement = (task) => {
+    return(
+    <div className="row" key={task._id} style={{border:'1px solid rgba(255,0,0,0.9)',margin:'10px',borderRadius:'5px',boxShadow:'0px 0px 2px 2px rgba(255,0,0,0.5)'}}>
+      <div className="col-12" style={{padding:'0px',margin:'0px'}}>
+        <Accordion.Toggle as={Button} className="col-12" eventKey={task._id} style={{borderColor : 'rgba(255,0,0,0.5)',backgroundColor:'rgba(255,0,0,0.8)',fontSize : '20px'}}>
+          <p style={{float:'left'}}><b style={{color:"black"}}>Topic : </b>{task.topic}</p>
+          <p style={{float:'right', padding: '10px 20px'}} className="badge badge-light">{task.taskType[0].toUpperCase() + task.taskType.slice(1)}</p>
+          <p style={{clear: 'both'}}/>
+          <p style={{float:'left'}}><b style={{color:"black"}}>Uploaded at : </b><span style={{color : "#1a4f0d"}}>{task.uploadTime}</span></p>
+          <p style={{float:'right'}}><b style={{color:'black'}}>Deadline : </b><span style={{color : "#87000b"}}>{task.deadline}</span></p>
+        </Accordion.Toggle>
+      </div>
+      <Accordion.Collapse eventKey={task._id} className="col-12" style={{padding:'10px',margin:'5px'}}>
+        <div className="col-12">
+          <form onSubmit={handleSubmit}>
+            <div className ="form-group row">
+              <label style={{padding:'2px', fontWeight:'bold', fontSize:'20px', textShadow:'1px 1px gray'}} className="col-12 col-md-2 form-label">Attachment: </label>
+              <div className="col-12 col-md-10"><input type="file" style={{border:'1px solid #dedede',padding:'2px'}} className="form-control-file" name="attachment" required/></div>
+            </div>
+            <div className ="form-group row">
+              <label style={{padding:'2px', fontWeight:'bold', fontSize:'20px', textShadow:'1px 1px gray'}} className="col-12 col-md-2 form-label">Feedback: </label>
+              <div className="col-12 col-md-10"><input type="text" name="feedback" className="form-control" required/></div>
+            </div>
+            <input type="hidden" name="taskType" value={task.taskType} />
+            <input type="hidden" name="topic" value={task.topic} />
+            <input type="hidden" name="taskId" value={task._id} />
+            <div className="row">
+              <div className="col-12 col-md-3 offset-md-2">
+                <button type="submit" name="submit" className="btn btn-primary btn-block">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </Accordion.Collapse>
+    </div>)
+  }
+
+  //function that can handle submit event during submission
   const handleSubmit = (event) => {
     const headers={"Content-Type": "multipart/form-data","X-Access-Token":localStorage.getItem('token')}
     event.preventDefault();
@@ -25,16 +66,7 @@ const Tasks = () =>{
     }, 1000))
   }
 
-  const handleSubmitClear = (event) => {
-    const headers={"Content-Type":"application/x-www-form-urlencoded","X-Access-Token":localStorage.getItem('token')}
-    event.preventDefault();
-    var formData = new FormData(event.target);
-    axios.post(server+'/uploadtask?rollNo='+localStorage.getItem('user')+'&clear=true',formData,{headers}).then(res=>console.log(res))
-    .then(() => setTimeout(() => {
-      getTasks();
-    }, 3000))
-  }
-
+  //function for showing the attachment that already submited
   const showAttachement = (task) =>{
     return(
     <div className="row" key={task._id} style={{border:'1px solid rgba(0,255,0,0.9)',margin:'10px',borderRadius:'5px',boxShadow:'0px 0px 2px 2px rgba(0,255,0,0.5)'}}>
@@ -82,51 +114,28 @@ const Tasks = () =>{
     </div>)
   }
 
-  const postAttachement = (task) => {
-    return(
-    <div className="row" key={task._id} style={{border:'1px solid rgba(255,0,0,0.9)',margin:'10px',borderRadius:'5px',boxShadow:'0px 0px 2px 2px rgba(255,0,0,0.5)'}}>
-      <div className="col-12" style={{padding:'0px',margin:'0px'}}>
-        <Accordion.Toggle as={Button} className="col-12" eventKey={task._id} style={{borderColor : 'rgba(255,0,0,0.5)',backgroundColor:'rgba(255,0,0,0.8)',fontSize : '20px'}}>
-          <p style={{float:'left'}}><b style={{color:"black"}}>Topic : </b>{task.topic}</p>
-          <p style={{float:'right', padding: '10px 20px'}} className="badge badge-light">{task.taskType[0].toUpperCase() + task.taskType.slice(1)}</p>
-          <p style={{clear: 'both'}}/>
-          <p style={{float:'left'}}><b style={{color:"black"}}>Uploaded at : </b><span style={{color : "#1a4f0d"}}>{task.uploadTime}</span></p>
-          <p style={{float:'right'}}><b style={{color:'black'}}>Deadline : </b><span style={{color : "#87000b"}}>{task.deadline}</span></p>
-        </Accordion.Toggle>
-      </div>
-      <Accordion.Collapse eventKey={task._id} className="col-12" style={{padding:'10px',margin:'5px'}}>
-        <div className="col-12">
-          <form onSubmit={handleSubmit}>
-            <div className ="form-group row">
-              <label style={{padding:'2px', fontWeight:'bold', fontSize:'20px', textShadow:'1px 1px gray'}} className="col-12 col-md-2 form-label">Attachment: </label>
-              <div className="col-12 col-md-10"><input type="file" style={{border:'1px solid #dedede',padding:'2px'}} className="form-control-file" name="attachment" required/></div>
-            </div>
-            <div className ="form-group row">
-              <label style={{padding:'2px', fontWeight:'bold', fontSize:'20px', textShadow:'1px 1px gray'}} className="col-12 col-md-2 form-label">Feedback: </label>
-              <div className="col-12 col-md-10"><input type="text" name="feedback" className="form-control" required/></div>
-            </div>
-            <input type="hidden" name="taskType" value={task.taskType} />
-            <input type="hidden" name="topic" value={task.topic} />
-            <input type="hidden" name="taskId" value={task._id} />
-            <div className="row">
-              <div className="col-12 col-md-3 offset-md-2">
-                <button type="submit" name="submit" className="btn btn-primary btn-block">Submit</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </Accordion.Collapse>
-    </div>)
+  //function that can handle the unsubmit process
+  const handleSubmitClear = (event) => {
+    const headers={"Content-Type":"application/x-www-form-urlencoded","X-Access-Token":localStorage.getItem('token')}
+    event.preventDefault();
+    var formData = new FormData(event.target);
+    axios.post(server+'/uploadtask?rollNo='+localStorage.getItem('user')+'&clear=true',formData,{headers}).then(res=>console.log(res))
+    .then(() => setTimeout(() => {
+      getTasks();
+    }, 3000))
   }
 
+  //will loading during initial
   if(tasks_loading){
     return <Loading/>
   }
 
+  //any error can be handle by this
   else if(tasks_error){
     return <h1>Something goes wrong</h1>
   }
 
+  //this is will call either show attachment or post attachment functions
   return(
     <Accordion className="container">
       <center><h2>Tasks</h2></center>
