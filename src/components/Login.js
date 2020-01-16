@@ -67,9 +67,6 @@ const Login = props => {
     e.preventDefault();
     let user = {};
     user.username = person;
-    console.log(user)
-    toggleUserModal(!isUserModalOpen)
-      togglenewpwdModal(!isnewpwdModalOpen)
     axios.post(server + '/otprequest',user)
     .then(()=>{
       toggleUserModal(!isUserModalOpen)

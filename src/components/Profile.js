@@ -1,5 +1,7 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
+import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import Loading from './Loading';
+import axios from 'axios';
 import server from '../config/server';
 import { Card } from "react-bootstrap";
 import DataContext from '../context/data/dataContext';
@@ -15,6 +17,44 @@ const Profile = () => {
     getProfile();
     //eslint-disable-next-line
   },[]);
+
+  const [newpwd, setnewpwd] = useState({
+    otp : '',
+    pwd : ''
+  });
+  const { otp, pwd } = newpwd;
+  const [isnewpwdModalOpen, togglenewpwdModal] = useState(false)
+
+  const onnewpwdChange = e => setnewpwd({
+    ...newpwd,
+    [e.target.name] : e.target.value
+  });
+
+  const onChangepwd = () => {
+    let user = {};
+    user.username = localStorage.getItem('user');
+
+    axios.post(server + '/otprequest',user)
+    .then(()=>{
+      togglenewpwdModal(!isnewpwdModalOpen)
+    })
+    .catch(err => console.log(err))
+  }
+
+  const submitnewpwd = e => {
+    e.preventDefault();
+
+    let userpwd = {};
+    userpwd.username = localStorage.getItem('user');
+    userpwd.password = pwd;
+    userpwd.OTP = otp;
+
+    axios.post(server + '/passwordchange',userpwd)
+    .then(()=>{
+      togglenewpwdModal(!isnewpwdModalOpen)
+    })
+    .catch(err => console.log(err))
+  }
 
   //function for showing achievements
   const Achievements = (achievements) => {
@@ -71,6 +111,7 @@ const Profile = () => {
             <p><b>RollNo:</b>{profile.rollNo}</p>
             <p><b>Batch:</b>{profile.batch}</p>
             <p><b>Email:</b>{profile.mailId}</p>
+            <button className="btn btn-success" onClick={onChangepwd}>Change Password</button>
           </div>
         </div>
       </div>
@@ -97,6 +138,25 @@ const Profile = () => {
       <div className="row justify-content-center" style={{ border: "1px solid black", margin: "10px", padding: "5px" }}>
         {Achievements(profile.achievements)}
       </div>
+
+      <Modal isOpen = {isnewpwdModalOpen} toggle = {() =>togglenewpwdModal(!isnewpwdModalOpen)}>
+        <ModalHeader toggle={() => togglenewpwdModal(!isnewpwdModalOpen)}>Change Password</ModalHeader>
+        <ModalBody>
+          <center className='h5' style={{color:'green'}}>Check Your Email for OTP</center>
+          <form onSubmit = {submitnewpwd}>
+            <div className="form-group row">
+              <label className="form-label col-12">OTP</label>
+              <div className="col-12"><input type="text" required onChange={onnewpwdChange} className="form-control" value={otp} name="otp"/></div>
+            </div>
+            <div className="form-group row">
+              <label className="form-label col-12">New password</label>
+              <div className="col-12"><input type="text" required onChange={onnewpwdChange} className="form-control" value={pwd} name="pwd"/></div>
+            </div>
+            <button type="button" className="btn btn-success" onClick={() => togglenewpwdModal(!isnewpwdModalOpen)}>Cancel</button> &nbsp;
+            <button type="submit" className="btn btn-primary pl-4 pr-4">Submit</button>
+          </form>
+        </ModalBody>
+      </Modal>
 
     </div>
   );
