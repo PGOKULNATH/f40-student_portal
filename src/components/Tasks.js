@@ -1,5 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import Loading from './Loading';
+import Error from './Error';
 import {Button,Accordion} from 'react-bootstrap';
 import axios from 'axios';
 import server from '../config/server';
@@ -132,7 +133,8 @@ const Tasks = () =>{
 
   //any error can be handle by this
   else if(tasks_error){
-    return <h1>Something goes wrong</h1>
+    console.log(tasks_error);
+    return <Error />
   }
 
   //this is will call either show attachment or post attachment functions

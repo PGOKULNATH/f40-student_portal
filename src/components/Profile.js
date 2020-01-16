@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 import Loading from './Loading';
+import Error from './Error';
 import axios from 'axios';
 import server from '../config/server';
 import { Card } from "react-bootstrap";
@@ -83,7 +84,7 @@ const Profile = () => {
   //this will handle errors
   else if(profile_error){
     console.log(profile_error);
-    return <h1>Something goes wrong</h1>
+    return <Error />
   }
 
   //this will show profile
