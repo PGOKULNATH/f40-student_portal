@@ -32,14 +32,22 @@ const UserState = props => {
     try{
 
       const res =  await axios.post(server + "/validateuser", formData, config);
+      if(res.data.type === 'student'){
 
-      dispatch({
-        type : LOGIN_SUCCESS,
-        payload : {...formData, token : res.data.token}
-      });
+        dispatch({
+          type : LOGIN_SUCCESS,
+          payload : {...formData, token : res.data.token}
+        });
 
-      if(localStorage.token){
-        setAuthToken(localStorage.token);
+        if(localStorage.token){
+          setAuthToken(localStorage.token);
+        }
+      }
+      else{
+        dispatch({
+          type : LOGIN_FAIL,
+          payload : 'UnAuthorized access. Repeated trials will blacklist your account.'
+        });
       }
 
     }
