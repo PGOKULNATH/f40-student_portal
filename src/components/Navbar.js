@@ -32,10 +32,7 @@ const MyNavbar = () => {
   }, []);
 
   return (
-    <nav
-      className="navbar navbar-default navbar-expand-md"
-      style={{ backgroundColor: "#6a00ff" }}
-    >
+    <nav className="navbar navbar-dark navbar-expand-md m-primary-bg">
       <button
         className="navbar-toggler"
         type="button"
@@ -49,31 +46,31 @@ const MyNavbar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <div className="navbar-nav mr-auto">
-          <Link className="nav-link text-white" to={"/f40/"}>
+          <Link className="nav-link " to={"/f40/"}>
             Home
           </Link>
-          <Link className="nav-link text-white" to={"/f40/Profile"}>
+          <Link className="nav-link " to={"/f40/Profile"}>
             Profile
           </Link>
-          <Link className="nav-link text-white" to={"/f40/Tasks"}>
+          <Link className="nav-link " to={"/f40/Tasks"}>
             Tasks
           </Link>
-          <Link className="nav-link text-white" to={"/f40/Score"}>
+          <Link className="nav-link " to={"/f40/Score"}>
             Score
           </Link>
-          <Link className="nav-link text-white" to={"/f40/Assessments"}>
+          <Link className="nav-link " to={"/f40/Assessments"}>
             Assessments
           </Link>
-          <Link className="nav-link text-white" to={"/f40/Attendance"}>
+          <Link className="nav-link " to={"/f40/Attendance"}>
             Attendance
           </Link>
-          <Link className="nav-link text-white" to={"/f40/Courses"}>
+          <Link className="nav-link " to={"/f40/Courses"}>
             {" "}
             Courses{" "}
           </Link>
         </div>
       </div>
-      <span className="navbar-text mr-2">Hi {user}!</span>
+      <span className="navbar-text  mr-2">Hi {user}!</span>
       <Link className="btn btn-danger" to={"/f40/"} onClick={() => logout()}>
         {" "}
         Logout{" "}
