@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Nav } from "react-bootstrap";
 import UserContext from "../context/user/UserContext";
 import DataContext from "../context/data/dataContext";
 
@@ -33,76 +32,53 @@ const MyNavbar = () => {
   }, []);
 
   return (
-    <Navbar bg="primary" expand="md">
-      <Navbar.Toggle
+    <nav
+      className="navbar navbar-default navbar-expand-md"
+      style={{ backgroundColor: "#6a00ff" }}
+    >
+      <button
+        className="navbar-toggler"
+        type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
-      />
-      <Navbar.Collapse id="navbarSupportedContent">
-        <Nav className="mr-auto">
-          <Link className="nav-link" style={{ color: "white" }} to={"/f40/"}>
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div className="navbar-nav mr-auto">
+          <Link className="nav-link text-white" to={"/f40/"}>
             Home
           </Link>
-          <Link
-            className="nav-link"
-            to={"/f40/Profile"}
-            style={{ color: "white" }}
-          >
+          <Link className="nav-link text-white" to={"/f40/Profile"}>
             Profile
           </Link>
-          <Link
-            className="nav-link"
-            to={"/f40/Tasks"}
-            style={{ color: "white" }}
-          >
+          <Link className="nav-link text-white" to={"/f40/Tasks"}>
             Tasks
           </Link>
-          <Link
-            className="nav-link"
-            to={"/f40/Score"}
-            style={{ color: "white" }}
-          >
+          <Link className="nav-link text-white" to={"/f40/Score"}>
             Score
           </Link>
-          <Link
-            className="nav-link"
-            to={"/f40/Assessments"}
-            style={{ color: "white" }}
-          >
+          <Link className="nav-link text-white" to={"/f40/Assessments"}>
             Assessments
           </Link>
-          <Link
-            className="nav-link"
-            to={"/f40/Attendance"}
-            style={{ color: "white" }}
-          >
+          <Link className="nav-link text-white" to={"/f40/Attendance"}>
             Attendance
           </Link>
-          <Link
-            className="nav-link"
-            to={"/f40/Courses"}
-            style={{ color: "white" }}
-          >
+          <Link className="nav-link text-white" to={"/f40/Courses"}>
             {" "}
             Courses{" "}
           </Link>
-        </Nav>
-      </Navbar.Collapse>
-      <span className="navbar-text mr-2" style={{ color: "white" }}>
-        Hi {user}!
-      </span>
-      <Link
-        className="btn btn-outline-danger"
-        to={"/f40/"}
-        onClick={() => logout()}
-      >
+        </div>
+      </div>
+      <span className="navbar-text mr-2">Hi {user}!</span>
+      <Link className="btn btn-danger" to={"/f40/"} onClick={() => logout()}>
         {" "}
         Logout{" "}
       </Link>
-    </Navbar>
+    </nav>
   );
 };
 
