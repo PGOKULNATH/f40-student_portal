@@ -31,7 +31,7 @@ const Score = () => {
     <div className="container">
       <center className="row">
         <div className="col-10 offset-1">
-          <h1>Scores</h1>
+          <h1 className="m-accent">Scores</h1>
         </div>
         <Table size bordered className="col-10 offset-1">
           <thead>

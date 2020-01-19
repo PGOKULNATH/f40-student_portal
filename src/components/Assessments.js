@@ -28,7 +28,7 @@ const Assessments = () => {
     <div className="container">
       <div className="row">
         <div className="col-12 text-center">
-          <h1>Assessments</h1>
+          <h1 className="m-accent">Assessments</h1>
         </div>
       </div>
       <div className="row m-2">

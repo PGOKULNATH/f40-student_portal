@@ -250,7 +250,7 @@ const Tasks = () => {
   return (
     <Accordion className="container">
       <center>
-        <h1>Tasks</h1>
+        <h1 className="m-accent">Tasks</h1>
       </center>
       {tasks.map(task =>
         !task.attachment ? postAttachement(task) : showAttachement(task)

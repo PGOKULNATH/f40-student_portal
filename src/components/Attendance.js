@@ -29,7 +29,7 @@ const Attendance = () => {
     <div className="container">
       <center className="row">
         <div className="col-10 offset-1">
-          <h1>Attendance</h1>
+          <h1 className="m-accent">Attendance</h1>
         </div>
         <Table size bordered className="col-10 offset-1">
           <thead>

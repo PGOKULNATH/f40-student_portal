@@ -23,7 +23,7 @@ const Courses = () => {
   return (
     <div className="container">
       <center>
-        <h1>Courses</h1>
+        <h1 className="m-accent">Courses</h1>
       </center>
       <div>
         <center>

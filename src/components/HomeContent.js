@@ -27,7 +27,7 @@ const HomeContent = () => {
     <div className="container">
       <div className="row">
         <div className="col-12 col-md-6">
-          <center className="row h1 m-2">Events</center>
+          <center className="row h1 m-2 m-accent">Events</center>
           <div className="row">
             {events_loading ? (
               <Loading />
@@ -55,7 +55,7 @@ const HomeContent = () => {
           </div>
         </div>
         <div className="col-12 col-md-6">
-          <center className="row h1 m-2">Notifications</center>
+          <center className="row h1 m-2 m-accent">Notifications</center>
           <div className="row">
             {notifications_loading ? (
               <Loading />
