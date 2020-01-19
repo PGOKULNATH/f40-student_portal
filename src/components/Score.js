@@ -35,7 +35,7 @@ const Score = () => {
         </div>
         <Table size bordered className="col-10 offset-1">
           <thead>
-            <tr className="m-primary-bg m-text-light">
+            <tr className="font-big m-primary-bg m-text-light">
               <td>Date</td>
               <td>Topic</td>
               <td>Score</td>

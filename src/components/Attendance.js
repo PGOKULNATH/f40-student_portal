@@ -33,7 +33,7 @@ const Attendance = () => {
         </div>
         <Table size bordered className="col-10 offset-1">
           <thead>
-            <tr className="m-primary-bg m-text-light">
+            <tr className="m-primary-bg m-text-light font-big">
               <th>Date</th>
               <th>Present/Absent</th>
             </tr>

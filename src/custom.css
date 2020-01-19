@@ -6,6 +6,9 @@
   color: #ddd;
 }
 
+.m-text-dark {
+  color: #333;
+}
 .m-accent {
   color: #ff3d00;
 }
@@ -16,4 +19,24 @@
 
 .m-negative-bg-50 {
   background-color: #f007;
+}
+
+.m-positive-bg {
+  background-color: #8bc34a !important;
+}
+
+.m-negative-bg {
+  background-color: #f44336 !important;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.font-big {
+  font-size: 1.25em !important;
 }
