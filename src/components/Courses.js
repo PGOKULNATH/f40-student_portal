@@ -27,7 +27,7 @@ const Courses = () => {
       </center>
       <div>
         <center>
-          <h2>Here are some courses recommended for you</h2>
+          <h4>Here are some courses recommended for you</h4>
         </center>
         <Accordion className="container">
           {courses.map(item => {

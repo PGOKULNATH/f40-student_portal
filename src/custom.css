@@ -32,6 +32,12 @@
 .m-neutral-bg {
   background-color: #f57c00ee !important;
 }
+
+.m-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .float-left {
   float: left;
 }

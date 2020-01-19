@@ -47,8 +47,8 @@ const Assessments = () => {
             </p>
             <br />
             <br />
-            <p className="text-center font-big">
-              <b>Link: </b>
+            <p className="text-center text-white font-big m-overflow">
+              <b className="text-dark">Link: </b>
               <a className="text-white" href={val.link}>
                 {val.link}
               </a>

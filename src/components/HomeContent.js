@@ -35,7 +35,7 @@ const HomeContent = () => {
               <Error />
             ) : (
               events.map(item => (
-                <div className="card shadow border m-2" key={item._id}>
+                <div className="card shadow border m-1" key={item._id}>
                   <div className="card-title h3 p-2 m-0 m-primary-bg text-light">
                     {item.title} :
                   </div>

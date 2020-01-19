@@ -27,11 +27,11 @@ const Attendance = () => {
 
   return (
     <div className="container">
-      <center className="row">
-        <div className="col-10 offset-1">
+      <center className="row m-2">
+        <div className="col-12">
           <h1 className="m-accent">Attendance</h1>
         </div>
-        <Table size bordered className="col-10 offset-1">
+        <Table size bordered className="col-12 text-center">
           <thead>
             <tr className="m-primary-bg m-text-light font-big">
               <th>Date</th>

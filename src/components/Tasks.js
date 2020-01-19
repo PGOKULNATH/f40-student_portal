@@ -162,7 +162,7 @@ const Tasks = () => {
                     <a
                       href={server + task.attachment.url}
                       rel="noopener noreferrer"
-                      className="font-big col-10 col-md-11"
+                      className="font-big col-10 col-md-11 m-overflow"
                       target="_blank"
                     >
                       {task.attachment.url.slice(7)}
