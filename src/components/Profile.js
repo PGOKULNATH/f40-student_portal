@@ -113,9 +113,6 @@ const Profile = () => {
   //this will show profile
   return (
     <div className="container">
-      <center>
-        <h1 className="m-accent">My Profile</h1>
-      </center>
       <Alerts />
       <div className="row m-1">
         <div className="col-sm-6">
