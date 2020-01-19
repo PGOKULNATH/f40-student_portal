@@ -22,13 +22,16 @@
 }
 
 .m-positive-bg {
-  background-color: #8bc34a !important;
+  background-color: #8bc34aee !important;
 }
 
 .m-negative-bg {
-  background-color: #f44336 !important;
+  background-color: #f44336ee !important;
 }
 
+.m-neutral-bg {
+  background-color: #f57c00ee !important;
+}
 .float-left {
   float: left;
 }
