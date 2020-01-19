@@ -5,3 +5,15 @@
 .m-text-light {
   color: #ddd;
 }
+
+.m-accent {
+  color: #ff3d00;
+}
+
+.m-positive-bg-50 {
+  background-color: #0f07;
+}
+
+.m-negative-bg-50 {
+  background-color: #f007;
+}
