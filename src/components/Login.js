@@ -17,7 +17,6 @@ const Login = props => {
 
   useEffect(() => {
 
-
     if(error !== null){
       setAlert(error);
       clearErrors();

@@ -5,10 +5,15 @@ import Error from "./Error";
 import axios from "axios";
 import server from "../config/server";
 import DataContext from "../context/data/dataContext";
+import AlertContext from "../context/alert/alertContext";
+import Alerts from "./Alerts";
 
 const Profile = () => {
   //context data
   const dataContext = useContext(DataContext);
+  const alertContext = useContext(AlertContext);
+
+  const { setAlert } = alertContext;
   const { profile, profile_loading, profile_error, getProfile } = dataContext;
 
   //get profile
@@ -58,6 +63,23 @@ const Profile = () => {
       .catch(err => console.log(err));
   };
 
+  const downloadPDF = () => {
+    const headers = { "X-Access-Token": localStorage.getItem("token") };
+    axios
+      .get(server + "/studentpdf?rollNo=" + localStorage.getItem("user"), {
+        headers
+      })
+      .then(() => {
+        setTimeout(() => {
+          setAlert("Check Your Email");
+        }, 500);
+      })
+      .catch(err => {
+        console.log(err);
+        setAlert("Something goes wrong; Try again.");
+      });
+  };
+
   //function for showing achievements
   const Achievements = achievements => {
     if (achievements === undefined || achievements.length === 0) {
@@ -94,6 +116,21 @@ const Profile = () => {
       <center>
         <h1 className="m-accent">My Profile</h1>
       </center>
+      <Alerts />
+      <div className="row m-1">
+        <div className="col-sm-6">
+          <h1 className="m-accent">My Profile</h1>
+        </div>
+        <div className="col-sm-6">
+          <button
+            type="button"
+            onClick={downloadPDF}
+            className="btn btn-primary col-sm-6 col-md-4 btn-block m-sm-1 float-sm-right"
+          >
+            Download
+          </button>
+        </div>
+      </div>
 
       <div className="row justify-content-center m-2 shadow-sm border border-dark">
         <div className="col-12 col-md-6">
