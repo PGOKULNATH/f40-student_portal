@@ -21,7 +21,7 @@ const Home = () => {
   const Jumb = () => {
     if (j) {
       return (
-        <div className="jumbotron rounded-0 d-none d-md-block m-primary-bg">
+        <div className="jumbotron shadow rounded-0 d-none d-md-block m-primary-bg">
           <center>
             <div className="container">
               <img

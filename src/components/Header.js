@@ -31,16 +31,14 @@ const Header = () => {
               alt="KCT"
               style={{ float: "left", width: "50px" }}
             />
-            <h1 style={{ float: "left" }}> &nbsp;KCT</h1>
             <img
               src="ece_logo.png"
               alt="ECE"
               style={{ float: "right", width: "75px" }}
             />
-            <h1 className="m-text-light" style={{ float: "right" }}>
-              ECE
-            </h1>
-            <h3 className="m-text-light" style={{ clear: "both" }}>
+            <br />
+            <h1 className="m-text-light text-center">KCT ECE</h1>
+            <h3 className="m-text-light text-center">
               Student Portal - Log in
             </h3>
           </div>
